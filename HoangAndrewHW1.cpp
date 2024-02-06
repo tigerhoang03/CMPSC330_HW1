@@ -4,11 +4,10 @@
 #include <stdlib.h> 
 #include <cmath>
 #include <cstdio>
-#include <vector>
 
 using namespace std;
 
-void merge(double arr[], int left, int mid, int right) {
+void merge(double arr[], int left, int mid, int right) { //merge sort function
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -50,10 +49,10 @@ void merge(double arr[], int left, int mid, int right) {
     }
 }
 
-void sort(double arr[], int left, int right)
+void sort(double arr[], int left, int right) //merge sort function
     { //no need for this but merge sort is fun
         if (left < right) {
-        // Same as (left+right)/2, but avoids overflow for large left and right
+        // Same as (left+right)/2 but avoids overflow for large left and right
         int mid = left + (right - left) / 2;
 
         // Sort first and second halves
@@ -81,13 +80,37 @@ double getMin(double arr[]){
         return arr[0];
     }
 
-void getMeanByClass(double arr[], string classes[], string className){
+void getMeanByClass(double arr[150][4], string classes[], string className){
         //call the function and it displays all the means of the classes in a formatted string
         //setosa 0-49, versicolor 50-99, virginica 100-149
         //return a formatted string with the class name and the mean of the arrays
         //the function takes in a flower name, the array of one variable (ie. sepal length), and the string classes array to find the corresponding indices.
-
         
+        int start_row, end_row;
+        if(className == "Iris-setosa"){
+            start_row = 0;
+            end_row = 49; 
+        }else if (className == "Iris-versicolor"){
+            start_row = 51;
+            end_row = 99;
+        }else if (className == "Iris-virginica"){
+            start_row = 100;
+            end_row = 149;
+        }else{
+            cout << "Invalid class name" << endl;
+            return;
+        }
+        printf("%-10s", className.c_str());
+        for(int i = 0; i < 4; i++){
+            double sum = 0;
+            for (int j = start_row; j <= end_row; j++)
+            {
+                sum += arr[j][i];
+                //continue;
+            }
+           printf("%15.2f", (sum/50));
+        }
+        cout << "\n";
     }
 
 int main()
@@ -154,7 +177,7 @@ for (int j = 0; j < 4; j++) {
 }
 cout << "\n";
 
-double data[n][5]; //merges all arrays into one except the class (since its a string array)
+double data[n][4]; //merges all arrays into one except the class (since its a string array)
 for (int i = 0; i < n; i++) {
     data[i][0] = sepalLength[i];
     data[i][1] = sepalWidth[i];
@@ -173,12 +196,14 @@ printf("Mean:  %-11.2f  %-11.2f  %-11.2f  %-11.2f  \n",getMean(sepalLength), get
 cout << "\n";
 
 cout << "Mean by class: \n\n";
-//This is where the function calls should go
+
 cout << "class     " ;
 for (int j = 0; j < 4; j++) {
     printf("%15s ", headerArray[j].c_str());
 }
-cout << "\n\n";
+cout << "\n";
+getMeanByClass(data, classes, "Iris-setosa");
+
 
 
 printf("hello\n");
