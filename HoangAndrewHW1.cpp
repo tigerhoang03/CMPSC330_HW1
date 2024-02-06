@@ -4,6 +4,7 @@
 #include <stdlib.h> 
 #include <cmath>
 #include <cstdio>
+#include <vector>
 
 using namespace std;
 
@@ -81,7 +82,11 @@ double getMin(double arr[]){
     }
 
 void getMeanByClass(double arr[], string classes[], string className){
+        //call the function and it displays all the means of the classes in a formatted string
         //setosa 0-49, versicolor 50-99, virginica 100-149
+        //return a formatted string with the class name and the mean of the arrays
+        //the function takes in a flower name, the array of one variable (ie. sepal length), and the string classes array to find the corresponding indices.
+
         
     }
 
@@ -149,6 +154,14 @@ for (int j = 0; j < 4; j++) {
 }
 cout << "\n";
 
+double data[n][5]; //merges all arrays into one except the class (since its a string array)
+for (int i = 0; i < n; i++) {
+    data[i][0] = sepalLength[i];
+    data[i][1] = sepalWidth[i];
+    data[i][2] = petalLength[i];
+    data[i][3] = petalWidth[i];
+}
+
 sort(sepalLength, 0, 149); //merge sorts array so the max and min can be found
 sort(sepalWidth, 0, 149);
 sort(petalLength, 0, 149);
@@ -160,7 +173,22 @@ printf("Mean:  %-11.2f  %-11.2f  %-11.2f  %-11.2f  \n",getMean(sepalLength), get
 cout << "\n";
 
 cout << "Mean by class: \n\n";
-printf("hello");
+//This is where the function calls should go
+cout << "class     " ;
+for (int j = 0; j < 4; j++) {
+    printf("%15s ", headerArray[j].c_str());
+}
+cout << "\n\n";
+
+
+printf("hello\n");
+
+// for (int i = 0; i < 150; i++) { //prints the 2d array
+//     for (int j = 0; j < 4; j++) {
+//         printf("%5.2f",data[i][j]);
+//     }
+//     std::cout << '\n';
+// }
 
 return 0;  
 }
