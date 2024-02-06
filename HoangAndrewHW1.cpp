@@ -136,26 +136,32 @@ printf("\n");
 
 for (int j = 0; j < 150; j++) {
     if ((j >= 0 && j <= 4) || (j >= 50 && j <= 54) || (j >= 100 && j <=104)){
-        printf("%3d %13.2f %11.2f %12.2f %11.2f  %s\n", 
+        printf("%3d %13.2f %11.2f %12.2f %11.2f      %-s\n", 
                j, sepalLength[j], sepalWidth[j], petalLength[j], petalWidth[j], classes[j].c_str());
     }
 }   
 
 
 cout << "\n" <<"Analysis summary: \n\n";
-printf("     ");
+printf("       ");
 for (int j = 0; j < 4; j++) {
-    printf("%10s ", headerArray[j].c_str());
+    printf("%-12s ", headerArray[j].c_str());
 }
 cout << "\n";
 
-    // cout << sepalLength[0] << " This is unsorted" <<endl;
-    // sort(sepalLength, 0, 149);
-    // cout << sepalLength[0] << " This is sorted" << endl;
+sort(sepalLength, 0, 149); //merge sorts array so the max and min can be found
+sort(sepalWidth, 0, 149);
+sort(petalLength, 0, 149);
+sort(petalWidth, 0, 149);
 
-    // cout << getMax(sepalLength) << endl;
-    // cout << getMin(sepalLength) << endl;
-    // cout << getMean(sepalLength) << endl;
-   
+printf(" Max:  %-11.2f  %-11.2f  %-11.2f  %-11.2f  \n",getMax(sepalLength), getMax(sepalWidth), getMax(petalLength), getMax(petalWidth));
+printf(" Min:  %-11.2f  %-11.2f  %-11.2f  %-11.2f  \n",getMin(sepalLength), getMin(sepalWidth), getMin(petalLength), getMin(petalWidth));
+printf("Mean:  %-11.2f  %-11.2f  %-11.2f  %-11.2f  \n",getMean(sepalLength), getMean(sepalWidth), getMean(petalLength), getMean(petalWidth));
+cout << "\n";
+
+cout << "Mean by class: \n\n";
+printf("hello");
+
+return 0;  
 }
 
