@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h> 
 #include <cmath>
+#include <cstdio>
 
 using namespace std;
 
@@ -62,7 +63,6 @@ void sort(double arr[], int left, int right)
         }
     }
 
-
 double getMean(double arr[]){ //keep in mind passing arrays passes a pointer to the first element's address
         double sum =0;
         for(int i = 0; i<150; i++){//for this homework we know that the array is 150 elements long so we can hard code it
@@ -72,8 +72,6 @@ double getMean(double arr[]){ //keep in mind passing arrays passes a pointer to 
         return round(mean*100)/100; //rounding to 2 decimal places
     }
 
-
-
 double getMax(double arr[]){
         return arr[149]; //this function is now O(1) time complexity haha (it's a joke, since it is dependent on the merge sort function)
        } 
@@ -82,7 +80,6 @@ double getMin(double arr[]){
         return arr[0];
     }
 
-    
 void getMeanByClass(double arr[], string classes[], string className){
         //setosa 0-49, versicolor 50-99, virginica 100-149
         
@@ -106,9 +103,7 @@ int main()
 
     string tempString; //string to temporarily store line of data
 
-    cout << "Reading data from the file.\n";
-    
-    
+
     for (int i = 0; i < 5; i++) {
 		inputFile >> headerArray[i];
 	}
@@ -130,29 +125,37 @@ int main()
 		classes[n] = tempString;
 
 		n++; // increase number of elements
-	}
+    }
 
-    cout << "Data peeking: \n";
-    for (int j = 0; j < 5; j++) {
-		cout << headerArray[j] << " ";
-	}
-    cout << endl;
+printf("Data peeking: \n");
+printf("     "); // 5 spaces for the unnamed column of iterations
+for (int j = 0; j < 5; j++) {
+    printf("%10s ", headerArray[j].c_str());
+}
+printf("\n");
 
-    for (int j = 0; j < 150; j++) {
-		cout<< sepalLength[j] << "\t\t" << sepalWidth[j] << "\t "
-			<< petalLength[j] << "\t\t" << petalWidth[j] << "\t " << classes[j] << endl;
-	}
+for (int j = 0; j < 150; j++) {
+    if ((j >= 0 && j <= 4) || (j >= 50 && j <= 54) || (j >= 100 && j <=104)){
+        printf("%3d %13.2f %11.2f %12.2f %11.2f  %s\n", 
+               j, sepalLength[j], sepalWidth[j], petalLength[j], petalWidth[j], classes[j].c_str());
+    }
+}   
 
-    
-    //up to this point the code is the same as Prof. Tran's code
 
-    cout << sepalLength[0] << "This is unsorted" <<endl;
-    sort(sepalLength, 0, 149);
-    cout << sepalLength[0] << "This is sorted" << endl;
+cout << "\n" <<"Analysis summary: \n\n";
+printf("     ");
+for (int j = 0; j < 4; j++) {
+    printf("%10s ", headerArray[j].c_str());
+}
+cout << "\n";
 
-    cout << getMax(sepalLength) << endl;
-    cout << getMin(sepalLength) << endl;
-    cout << getMean(sepalLength) << endl;
+    // cout << sepalLength[0] << " This is unsorted" <<endl;
+    // sort(sepalLength, 0, 149);
+    // cout << sepalLength[0] << " This is sorted" << endl;
+
+    // cout << getMax(sepalLength) << endl;
+    // cout << getMin(sepalLength) << endl;
+    // cout << getMean(sepalLength) << endl;
    
 }
 
