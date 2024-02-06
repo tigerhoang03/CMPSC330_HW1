@@ -1,3 +1,10 @@
+/*Andrew Hoang
+Description:
+This is program is HW 1 for CS330
+the program follows the 6 requirements laid out in the documentation; where it prints out corresponding 
+summaries of sepal length, sepal width, petal length, and petal width of 3 different classes of flowers using 
+the listed 4 required functions.*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -63,7 +70,7 @@ void sort(double arr[], int left, int right) //merge sort function
         }
     }
 
-double getMean(double arr[]){ //keep in mind passing arrays passes a pointer to the first element's address
+double getMean(double arr[]){ //keep in mind passing arrays in c++ passes a pointer to the first element's address and not the array itself
         double sum =0;
         for(int i = 0; i<150; i++){//for this homework we know that the array is 150 elements long so we can hard code it
             sum += arr[i];
@@ -81,11 +88,10 @@ double getMin(double arr[]){
     }
 
 void getMeanByClass(double arr[150][4], string classes[], string className){
-        //call the function and it displays all the means of the classes in a formatted string
-        //setosa 0-49, versicolor 50-99, virginica 100-149
-        //return a formatted string with the class name and the mean of the arrays
-        //the function takes in a flower name, the array of one variable (ie. sepal length), and the string classes array to find the corresponding indices.
-        
+        /*This function takes in the classname and prints out the averages of the corresponding class by iterating through a 2d array
+        which is a 150 * 4 table of all the numerical data, excluding the class names as it is a string array*/
+
+        //setosa 0-49, versicolor 50-99, virginica 100-149 the data has fixed indexes so we can select certain 'blocks' of data to analyze
         int start_row, end_row;
         if(className == "Iris-setosa"){
             start_row = 0;
@@ -123,8 +129,6 @@ int main()
     double petalLength[155];
     double petalWidth[155];
     string classes[155];
-
-    //int size = sizeof(sepalLength)/sizeof(sepalLength[0]); does the byte calculation and returns size of array
 
     ifstream inputFile; //input file object
     inputFile.open("textIrisData.txt");
@@ -165,10 +169,9 @@ printf("\n");
 for (int j = 0; j < 150; j++) {
     if ((j >= 0 && j <= 4) || (j >= 50 && j <= 54) || (j >= 100 && j <=104)){
         printf("%3d %13.2f %11.2f %12.2f %11.2f      %-s\n", 
-               j, sepalLength[j], sepalWidth[j], petalLength[j], petalWidth[j], classes[j].c_str());
+               j+1, sepalLength[j], sepalWidth[j], petalLength[j], petalWidth[j], classes[j].c_str());
     }
 }   
-
 
 cout << "\n" <<"Analysis summary: \n\n";
 printf("       ");
