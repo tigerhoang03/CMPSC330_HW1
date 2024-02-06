@@ -91,7 +91,7 @@ void getMeanByClass(double arr[150][4], string classes[], string className){
             start_row = 0;
             end_row = 49; 
         }else if (className == "Iris-versicolor"){
-            start_row = 51;
+            start_row = 50;
             end_row = 99;
         }else if (className == "Iris-virginica"){
             start_row = 100;
@@ -100,7 +100,7 @@ void getMeanByClass(double arr[150][4], string classes[], string className){
             cout << "Invalid class name" << endl;
             return;
         }
-        printf("%-10s", className.c_str());
+        printf("%-15s", className.c_str());
         for(int i = 0; i < 4; i++){
             double sum = 0;
             for (int j = start_row; j <= end_row; j++)
@@ -197,23 +197,14 @@ cout << "\n";
 
 cout << "Mean by class: \n\n";
 
-cout << "class     " ;
+cout<<"class\t\t    ";
 for (int j = 0; j < 4; j++) {
-    printf("%15s ", headerArray[j].c_str());
+    printf("%14s ", headerArray[j].c_str());
 }
 cout << "\n";
 getMeanByClass(data, classes, "Iris-setosa");
-
-
-
-printf("hello\n");
-
-// for (int i = 0; i < 150; i++) { //prints the 2d array
-//     for (int j = 0; j < 4; j++) {
-//         printf("%5.2f",data[i][j]);
-//     }
-//     std::cout << '\n';
-// }
+getMeanByClass(data, classes, "Iris-versicolor");
+getMeanByClass(data, classes, "Iris-virginica");
 
 return 0;  
 }
