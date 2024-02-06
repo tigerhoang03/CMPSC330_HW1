@@ -14,7 +14,7 @@ the listed 4 required functions.*/
 
 using namespace std;
 
-void merge(double arr[], int left, int mid, int right) { //merge sort function
+void merge(double arr[], int left, int mid, int right) { //merge sort function modifies the array and has no return type
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -56,7 +56,7 @@ void merge(double arr[], int left, int mid, int right) { //merge sort function
     }
 }
 
-void sort(double arr[], int left, int right) //merge sort function
+void sort(double arr[], int left, int right) //sorts the array is a void type as it modifies the array, doesnt need to return anything, takes in the array and the left and right index
     { //no need for this but merge sort is fun
         if (left < right) {
         // Same as (left+right)/2 but avoids overflow for large left and right
@@ -70,7 +70,8 @@ void sort(double arr[], int left, int right) //merge sort function
         }
     }
 
-double getMean(double arr[]){ //keep in mind passing arrays in c++ passes a pointer to the first element's address and not the array itself
+double getMean(double arr[]){ //takes in an array and returns the mean of the array including decimals
+    //keep in mind passing arrays in c++ passes a pointer to the first element's address and not the array itself
         double sum =0;
         for(int i = 0; i<150; i++){//for this homework we know that the array is 150 elements long so we can hard code it
             sum += arr[i];
@@ -79,11 +80,11 @@ double getMean(double arr[]){ //keep in mind passing arrays in c++ passes a poin
         return round(mean*100)/100; //rounding to 2 decimal places
     }
 
-double getMax(double arr[]){
+double getMax(double arr[]){//takes in an array and returns the max float value of the array
         return arr[149]; //this function is now O(1) time complexity haha (it's a joke, since it is dependent on the merge sort function)
        } 
 
-double getMin(double arr[]){
+double getMin(double arr[]){//takes in an array and returns the min float value of the array
         return arr[0];
     }
 
